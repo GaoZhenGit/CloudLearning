@@ -1,4 +1,4 @@
-package com.codetend.common.controllers;
+package com.codetend.service.provider.controller;
 
 import com.codetend.common.entity.CommonDataItem;
 import com.codetend.common.response.BaseResponse;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/common")
+@RequestMapping("/provider")
 @BaseResponse
-public class CommonController {
+public class ServiceProviderController {
     @RequestMapping("/test/{id}")
     @ResponseBody
     public CommonDataItem test(@PathVariable("id") String id) {

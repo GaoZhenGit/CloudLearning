@@ -20,7 +20,7 @@ public class ControllerLogAspect {
     @Autowired
     private Gson gson;
 
-    @Pointcut("execution(public * com.codetend..*.controllers..*.*(..))")
+    @Pointcut("execution(public * com.codetend..*.controller..*.*(..))")
     public void printLog() {
 
     }

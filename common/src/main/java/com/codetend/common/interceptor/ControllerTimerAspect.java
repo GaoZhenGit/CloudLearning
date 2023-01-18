@@ -19,7 +19,7 @@ public class ControllerTimerAspect {
     @Autowired
     private ThreadLocal<Long> startTime;
 
-    @Pointcut("execution(public * com.codetend..*.controllers..*.*(..))")
+    @Pointcut("execution(public * com.codetend..*.controller..*.*(..))")
     public void printTime() {
 
     }
