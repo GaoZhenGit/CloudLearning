@@ -1,8 +1,8 @@
 server:
-  port: 20101
+  port: 20102
 spring:
   application:
-    name: service-provider
+    name: service-consumer
   cloud:
     nacos:
       discovery:

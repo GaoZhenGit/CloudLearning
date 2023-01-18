@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/provider")
-@BaseResponse
-public class ServiceProviderController {
+public class ServiceProviderInnerController {
     @Autowired
     IServiceProviderService serviceProviderService;
-    @RequestMapping("/test/{id}")
+
+    @RequestMapping("/inner-test/{id}")
     @ResponseBody
-    public CommonDataItem test(@PathVariable("id") String id) {
+    public CommonDataItem testInner(@PathVariable("id") String id) {
         return serviceProviderService.test(id);
     }
 }
