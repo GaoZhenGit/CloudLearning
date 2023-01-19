@@ -20,11 +20,19 @@ public class ServiceProviderController {
         return serviceProviderService.test(id);
     }
 
-    @PostMapping(value = "/cluster")
+    @PostMapping(value = "/channel")
     @ResponseBody
     public CommonDataItem sendClusterMsg(
             @RequestParam("topic") String topic,
             @RequestParam("message") String message) {
-        return serviceProviderService.sendClusterMsg(topic, message);
+        return serviceProviderService.sendClusterMsgByChannel(topic, message);
+    }
+
+    @PostMapping(value = "/bridge")
+    @ResponseBody
+    public CommonDataItem sendBridgeMsg(
+            @RequestParam("topic") String topic,
+            @RequestParam("message") String message) {
+        return serviceProviderService.sendClusterMsgByBridge(topic, message);
     }
 }

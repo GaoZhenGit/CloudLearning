@@ -1,16 +1,13 @@
 package com.codetend.service.provider.service.impl;
 
 import com.codetend.common.entity.CommonDataItem;
-import com.codetend.service.provider.entity.BaseMessage;
 import com.codetend.service.provider.service.IServiceProviderService;
 import com.codetend.service.provider.service.MySource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
-import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.cloud.stream.function.StreamBridge;
-import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.GenericMessage;
@@ -28,19 +25,20 @@ public class ServiceProviderServiceImpl implements IServiceProviderService {
     private StreamBridge streamBridge;
     @Autowired
     private MySource source;
+
     @Override
     public CommonDataItem test(String id) {
         return new CommonDataItem(id, String.format("data from:%s", moduleName));
     }
 
     @Override
-    public CommonDataItem sendClusterMsg(String topic, String message) {
+    public CommonDataItem sendClusterMsgByChannel(String topic, String message) {
 //        Message<CommonDataItem> msg = new GenericMessage<>(new CommonDataItem("id:" + topic, message));
 //        boolean result = streamBridge.send(topic, msg);
 //        log.info("消息集群发送: " + msg.getPayload());
         MessageBuilder<CommonDataItem> builder = MessageBuilder.withPayload(new CommonDataItem("id:" + topic, message))
                 .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
-                .setHeader("topic",topic);
+                .setHeader("topic", topic);
         Message<CommonDataItem> msg = builder.build();
         boolean result;
         switch (topic) {
@@ -55,6 +53,13 @@ public class ServiceProviderServiceImpl implements IServiceProviderService {
                 result = source.output3().send(msg);
                 break;
         }
+        return new CommonDataItem(result ? "success" : "fail", msg.getPayload().toString());
+    }
+
+    @Override
+    public CommonDataItem sendClusterMsgByBridge(String topic, String message) {
+        Message<CommonDataItem> msg = new GenericMessage<>(new CommonDataItem("id:" + topic, message));
+        boolean result = streamBridge.send(topic, msg);
         return new CommonDataItem(result ? "success" : "fail", msg.getPayload().toString());
     }
 }
