@@ -8,3 +8,14 @@ spring:
       discovery:
         group: TEST_GROUP
         server-addr: localhost:20000
+    stream:
+      rocketmq:
+        binder:
+          name-server: localhost:9876
+      bindings:
+        produce1:
+          destination: test-topic1
+        produce2:
+          destination: test-topic2
+        produce3:
+          destination: test-topic3

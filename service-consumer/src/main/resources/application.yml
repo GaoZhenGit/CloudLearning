@@ -1,5 +1,5 @@
 server:
-  port: 20102
+  port: ${random.int[20102,20110]}
 spring:
   application:
     name: service-consumer
@@ -8,3 +8,17 @@ spring:
       discovery:
         group: TEST_GROUP
         server-addr: localhost:20000
+    stream:
+#      function:
+#        #消费者端配置
+#        definition: consumer
+      rocketmq:
+        binder:
+          name-server: localhost:9876
+      bindings:
+        consumer1:
+          destination: test-topic1
+        consumer2:
+          destination: test-topic2
+        consumer3:
+          destination: test-topic3
