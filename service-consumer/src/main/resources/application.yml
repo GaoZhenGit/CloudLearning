@@ -22,3 +22,5 @@ spring:
           destination: test-topic2
         consumer3:
           destination: test-topic3
+rocketmq:
+  name-server: localhost:9876

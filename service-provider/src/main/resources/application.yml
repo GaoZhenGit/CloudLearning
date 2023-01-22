@@ -19,3 +19,8 @@ spring:
           destination: test-topic2
         produce3:
           destination: test-topic3
+
+rocketmq:
+  name-server: localhost:9876
+  producer:
+    group: native_topic_group1

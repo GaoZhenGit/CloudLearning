@@ -1,9 +1,12 @@
 package com.codetend.service.provider.service.impl;
 
+import com.codetend.common.constant.RocketMqTopic;
 import com.codetend.common.entity.CommonDataItem;
 import com.codetend.service.provider.service.IServiceProviderService;
 import com.codetend.service.provider.service.MySource;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.producer.SendResult;
+import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
@@ -25,6 +28,8 @@ public class ServiceProviderServiceImpl implements IServiceProviderService {
     private StreamBridge streamBridge;
     @Autowired
     private MySource source;
+    @Autowired
+    private RocketMQTemplate rocketMQTemplate;
 
     @Override
     public CommonDataItem test(String id) {
@@ -61,5 +66,11 @@ public class ServiceProviderServiceImpl implements IServiceProviderService {
         Message<CommonDataItem> msg = new GenericMessage<>(new CommonDataItem("id:" + topic, message));
         boolean result = streamBridge.send(topic, msg);
         return new CommonDataItem(result ? "success" : "fail", msg.getPayload().toString());
+    }
+
+    @Override
+    public SendResult sendClusterMsgByNative(String topic, String tag, String message) {
+        CommonDataItem item = new CommonDataItem(topic, message);
+        return rocketMQTemplate.syncSend(topic+":"+tag, item);
     }
 }

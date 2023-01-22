@@ -1,19 +1,21 @@
 package com.codetend.service.consumer.service.impl;
 
+import com.codetend.common.constant.RocketMqTopic;
 import com.codetend.common.entity.CommonDataItem;
 import com.codetend.service.consumer.service.IServiceConsumerService;
 import com.codetend.service.consumer.service.MySink;
 import com.codetend.service.consumer.service.RemoteFeignService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
+import org.apache.rocketmq.spring.annotation.SelectorType;
+import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.function.Consumer;
 
 @Service
 @Slf4j
@@ -58,5 +60,18 @@ public class ServiceConsumerServiceImpl implements IServiceConsumerService {
     @StreamListener(MySink.INPUT3)
     public void receive3(CommonDataItem item) {
         log.info(port + "接受消息3：" + item);
+    }
+
+    @Component
+    @RocketMQMessageListener(
+            topic = RocketMqTopic.ROCKETMQ_NATIVE_TOPIC,
+            selectorType = SelectorType.TAG,
+            selectorExpression = "tag1||tag3",
+            consumerGroup = RocketMqTopic.ROCKETMQ_NATIVE_TOPIC_GROUP)
+    public static class CommonListenerA implements RocketMQListener<CommonDataItem> {
+        @Override
+        public void onMessage(CommonDataItem message) {
+            log.info("收到native消息:{}", message);
+        }
     }
 }
