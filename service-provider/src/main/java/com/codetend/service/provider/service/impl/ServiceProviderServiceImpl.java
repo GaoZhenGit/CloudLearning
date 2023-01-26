@@ -70,7 +70,12 @@ public class ServiceProviderServiceImpl implements IServiceProviderService {
 
     @Override
     public SendResult sendClusterMsgByNative(String topic, String tag, String message) {
-        CommonDataItem item = new CommonDataItem(topic, message);
+        CommonDataItem item = CommonDataItem.builder()
+                .id(topic)
+                .topic(topic)
+                .tag(tag)
+                .msg(message)
+                .build();
         return rocketMQTemplate.syncSend(topic+":"+tag, item);
     }
 }
