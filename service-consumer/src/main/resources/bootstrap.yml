@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: service-consumer
+  cloud:
+    nacos:
+      config:
+        server-addr: localhost:20000
+        file-extension: yml
