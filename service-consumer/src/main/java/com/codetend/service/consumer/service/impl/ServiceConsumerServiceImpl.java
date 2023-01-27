@@ -29,7 +29,9 @@ public class ServiceConsumerServiceImpl implements IServiceConsumerService {
 //    private MySink sink;
     @Override
     public CommonDataItem getRemoteData(String id) {
-        return remoteFeignService.test(id);
+        CommonDataItem item = remoteFeignService.test(id);
+        item.tag = "from consumer:" + port;
+        return item;
     }
 
 //    @Bean

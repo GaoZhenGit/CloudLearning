@@ -8,6 +8,7 @@
         <module>common</module>
         <module>service-provider</module>
         <module>service-consumer</module>
+        <module>gateway</module>
     </modules>
 
     <parent>
