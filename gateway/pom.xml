@@ -10,8 +10,9 @@
     <name>Service Gateway</name>
     <dependencies>
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>com.codetend</groupId>
+            <artifactId>common-base</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
         <dependency>

@@ -50,7 +50,7 @@
 
         <dependency>
             <groupId>com.codetend</groupId>
-            <artifactId>common</artifactId>
+            <artifactId>common-web</artifactId>
             <version>1.0.0</version>
         </dependency>
     </dependencies>
