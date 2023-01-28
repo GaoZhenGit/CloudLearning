@@ -6,8 +6,17 @@ spring:
   cloud:
     nacos:
       discovery:
+        group: TEST_GROUP
         server-addr: localhost:20000
     gateway:
       discovery:
         locator:
           enabled: true # 让gateway可以发现nacos中的微服务
+      routes:
+        - id: product_route # 路由的名字
+          uri: lb://service-provider # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=/provider/** # 符合这个规定的才进行1转发
+          filters:
+            - StripPrefix=1 # 将第一层去掉
+            - Time=enable
