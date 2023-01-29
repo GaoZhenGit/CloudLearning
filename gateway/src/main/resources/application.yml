@@ -8,19 +8,29 @@ spring:
       discovery:
         group: TEST_GROUP
         server-addr: localhost:20000
+    sentinel:
+      eager: true
+      transport:
+        dashboard: localhost:8090
     gateway:
       discovery:
         locator:
           enabled: true # 让gateway可以发现nacos中的微服务
       routes:
-        - id: product_route # 路由的名字
+        - id: provider_route # 路由的名字
           uri: lb://service-provider # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
           predicates:
             - Path=/provider/** # 符合这个规定的才进行1转发
           filters:
             - StripPrefix=1 # 将第一层去掉
-#            - Time=enable,10 #简略写法
-            - name: Time
+            - name: Time #详细写法
               args:
                 show: enable
                 threshold: 10
+        - id: consumer_route # 路由的名字
+          uri: lb://service-consumer # lb指的是从nacos中按照名称获取微服务,并遵循负载均衡策略
+          predicates:
+            - Path=/consumer/** # 符合这个规定的才进行1转发
+          filters:
+            - StripPrefix=1 # 将第一层去掉
+            - Time=enable,10 #简略写法
