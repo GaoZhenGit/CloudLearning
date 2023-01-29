@@ -43,7 +43,7 @@ public class TimeGatewayFilterFactory extends AbstractGatewayFilterFactory<TimeG
                 if (startTime != null) {
                     long cost = System.currentTimeMillis() - startTime;
                     if (cost > config.threshold) {
-                        log.info("{}请求耗时：{}, 阈值:{}", exchange.getRequest().getURI(), cost, config.threshold);
+                        log.warn("{}请求耗时：{}, 阈值:{}", exchange.getRequest().getURI(), cost, config.threshold);
                     }
                 }
             }));
