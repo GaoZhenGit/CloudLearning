@@ -19,4 +19,8 @@ spring:
             - Path=/provider/** # 符合这个规定的才进行1转发
           filters:
             - StripPrefix=1 # 将第一层去掉
-            - Time=enable
+#            - Time=enable,10 #简略写法
+            - name: Time
+              args:
+                show: enable
+                threshold: 10
