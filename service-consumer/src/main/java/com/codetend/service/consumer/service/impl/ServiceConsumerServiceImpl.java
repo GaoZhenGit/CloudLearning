@@ -6,6 +6,7 @@ import com.codetend.service.consumer.service.IServiceConsumerService;
 import com.codetend.service.consumer.service.MySink;
 import com.codetend.service.consumer.service.RemoteFeignService;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.rocketmq.client.producer.SendResult;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.annotation.SelectorType;
 import org.apache.rocketmq.spring.core.RocketMQListener;
@@ -29,12 +30,17 @@ public class ServiceConsumerServiceImpl implements IServiceConsumerService {
 //    private MySink sink;
     @Override
     public CommonDataItem getRemoteData(String id) {
-        CommonDataItem item = remoteFeignService.test(id);
+        CommonDataItem item = remoteFeignService.test(id).getData();
         item.tag = "from consumer:" + port;
         return item;
     }
 
-//    @Bean
+    @Override
+    public SendResult sendNativeMsg(String tag, String topic, String message) {
+        return remoteFeignService.sendNativeMsg(tag, topic, message).getData();
+    }
+
+    //    @Bean
 //    public Consumer<CommonDataItem> consumer3() {
 //        return new Consumer<CommonDataItem>() {
 //            @Override

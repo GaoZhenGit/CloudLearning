@@ -2,11 +2,13 @@ package com.codetend.common.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class ResponseResult<T> implements Serializable {
     /**
      * 返回的状态码
