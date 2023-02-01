@@ -49,8 +49,10 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <shardingsphere.version>4.0.0-RC1</shardingsphere.version>
+        <shardingsphere.version>4.1.1</shardingsphere.version>
         <druid.version>1.1.10</druid.version>
+        <mybaties.version>2.2.2</mybaties.version>
+        <mysql.version>8.0.22</mysql.version>
     </properties>
 
     <dependencyManagement>
@@ -97,8 +99,18 @@
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
-                <artifactId>druid-spring-boot-starter</artifactId>
+                <artifactId>druid</artifactId>
                 <version>${druid.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${mybaties.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

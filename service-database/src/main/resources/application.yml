@@ -14,14 +14,30 @@ spring:
       ds0:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://192.168.114.249:3306/product?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+        url: jdbc:mysql://localhost:13307/sharding?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
         username: root
         password: 123456
       ds1:
         type: com.alibaba.druid.pool.DruidDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://192.168.114.249:3306/product?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+        url: jdbc:mysql://localhost:13308/sharding?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
         username: root
         password: 123456
+    sharding:
+      tables:
+        user:  # 指定的数据库名
+          database-strategy:
+            inline:
+              sharding-column: uid
+              algorithm-expression: ds$->{uid % 2}
+          keyGenerator:   # 指定t_student表的主键生成策略为SNOWFLAKE
+            type: SNOWFLAKE  #主键生成策略为SNOWFLAKE
+            column: uid  #指定主键
+            props:
+              worker:
+                  id: 511  #雪花算法机器ID
+    props:
+      sql:
+        show: true
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
