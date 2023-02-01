@@ -1,0 +1,27 @@
+server:
+  port: ${random.int[20201,20209]}
+spring:
+  application:
+    name: service-database
+  cloud:
+    nacos:
+      discovery:
+        group: TEST_GROUP
+        server-addr: localhost:20000
+  shardingsphere:
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.114.249:3306/product?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+        username: root
+        password: 123456
+      ds1:
+        type: com.alibaba.druid.pool.DruidDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://192.168.114.249:3306/product?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+        username: root
+        password: 123456
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml

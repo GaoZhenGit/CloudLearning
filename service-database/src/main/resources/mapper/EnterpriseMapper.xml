@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gzpi.productioncenter.mapper.EnterpriseMapper">
+    <select id="getEnterpriseCountNew" resultType="java.util.Map">
+        SELECT
+        <if test="group != null and group.size>0">
+            <foreach collection="group" open="" close="," separator="," item="it" index="i">
+                ${it}
+            </foreach>
+        </if>
+        SUM(`count`) as `count`
+        from internal_detail_enterprise_create
+        WHERE
+        <if test="year != null and year.size>0">
+            `year` in
+            <foreach collection="year" open="(" close=")" separator="," item="year" index="i">
+                #{year}
+            </foreach>
+            AND
+        </if>
+        <if test="region != null &amp;&amp; region.codes.size>0">
+            ${region.getFilterLevel()} in
+            <foreach collection="region.codes" open="(" close=")" separator="," item="it" index="i">
+                #{it}
+            </foreach>
+            AND
+        </if>
+        <if test="industry != null &amp;&amp; industry.codes.size>0">
+            ${industry.getFilterLevel()} in
+            <foreach collection="industry.codes" open="(" close=")" separator="," item="it" index="i">
+                #{it}
+            </foreach>
+            AND
+        </if>
+        1=1
+        <if test="group != null and group.size>0">
+            GROUP BY
+            <foreach collection="group" open="" close="" separator="," item="it" index="i">
+                ${it}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="getEnterpriseCountSum" resultType="java.util.Map">
+        SELECT
+        <if test="group != null and group.size>0">
+            <foreach collection="group" open="" close="," separator="," item="it" index="i">
+                ${it}
+            </foreach>
+        </if>
+        SUM(`count`) as `count`
+        from internal_detail_enterprise_create
+        WHERE
+        <if test="year != null and year.length>0">
+            `year`+0 &lt;= #{year}
+            AND
+            `year`+0>=1990
+            AND
+        </if>
+        <if test="region != null &amp;&amp; region.codes.size>0">
+            ${region.getFilterLevel()} in
+            <foreach collection="region.codes" open="(" close=")" separator="," item="it" index="i">
+                #{it}
+            </foreach>
+            AND
+        </if>
+        <if test="industry != null &amp;&amp; industry.codes.size>0">
+            ${industry.getFilterLevel()} in
+            <foreach collection="industry.codes" open="(" close=")" separator="," item="it" index="i">
+                #{it}
+            </foreach>
+            AND
+        </if>
+        1=1
+        <if test="group != null and group.size>0">
+            GROUP BY
+            <foreach collection="group" open="" close="" separator="," item="it" index="i">
+                ${it}
+            </foreach>
+        </if>
+    </select>
+</mapper>
