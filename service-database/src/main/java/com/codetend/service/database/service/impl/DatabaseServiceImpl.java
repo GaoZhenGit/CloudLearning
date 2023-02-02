@@ -18,8 +18,8 @@ public class DatabaseServiceImpl implements IDatabaseService {
     private OrderMapper orderMapper;
 
     @Override
-    public List<User> getUsers() {
-        return userMapper.getUsers();
+    public List<User> getUsers(int offset, int rows) {
+        return userMapper.getUsers(offset, rows);
     }
 
     @Override
@@ -38,8 +38,8 @@ public class DatabaseServiceImpl implements IDatabaseService {
     }
 
     @Override
-    public List<Order> getOrders() {
-        return orderMapper.getOrders();
+    public List<Order> getOrders(int offset, int rows) {
+        return orderMapper.getOrders(offset, rows);
     }
 
     @Override

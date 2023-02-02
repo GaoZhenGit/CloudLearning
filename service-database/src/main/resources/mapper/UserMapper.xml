@@ -5,7 +5,7 @@
         SELECT `uid`, `name`, `desc` FROM user WHERE uid=#{uid}
     </select>
     <select id="getUsers" resultType="com.codetend.service.database.entity.User">
-        SELECT `uid`, `name`, `desc` FROM user
+        SELECT `uid`, `name`, `desc` FROM user limit #{offset}, #{rows}
     </select>
     <insert id="setUser" parameterType="com.codetend.service.database.entity.User">
         insert into user(`name`, `desc`) VALUES (#{name}, #{desc})

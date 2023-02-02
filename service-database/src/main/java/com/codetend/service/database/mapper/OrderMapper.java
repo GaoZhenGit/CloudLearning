@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
-    List<Order> getOrders();
+    List<Order> getOrders(int offset, int rows);
     Order getOrder(@Param("oid") long uid);
     void setOrder(Order Order);
     void deleteOrder(@Param("oid") long uid);

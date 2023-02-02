@@ -17,6 +17,7 @@ import java.util.List;
 public class ServiceDatabaseController {
     @Autowired
     private IDatabaseService databaseService;
+
     @GetMapping("/user/{id}")
     @ResponseBody
     public User getUser(@PathVariable("id") long id) {
@@ -25,8 +26,10 @@ public class ServiceDatabaseController {
 
     @GetMapping("/users")
     @ResponseBody
-    public List<User> getUsers() {
-        return databaseService.getUsers();
+    public List<User> getUsers(
+            @RequestParam(required = false, name = "offset") int offset,
+            @RequestParam(required = false, name = "rows") int rows) {
+        return databaseService.getUsers(offset, rows);
     }
 
     @PostMapping("/user")
@@ -43,8 +46,10 @@ public class ServiceDatabaseController {
 
     @GetMapping("/orders")
     @ResponseBody
-    public List<Order> getOrders() {
-        return databaseService.getOrders();
+    public List<Order> getOrders(
+            @RequestParam(required = false, name = "offset") int offset,
+            @RequestParam(required = false, name = "rows") int rows) {
+        return databaseService.getOrders(offset, rows);
     }
 
     @PostMapping("/order")

@@ -5,7 +5,7 @@
         SELECT `oid`, `buyer_id`, `seller_id` FROM `order` WHERE oid=#{oid}
     </select>
     <select id="getOrders" resultType="com.codetend.service.database.entity.Order">
-        SELECT `oid`, `buyer_id`, `seller_id` FROM `order`
+        SELECT `oid`, `buyer_id`, `seller_id` FROM `order` limit #{offset}, #{rows}
     </select>
     <insert id="setOrder" parameterType="com.codetend.service.database.entity.Order">
         insert into `order`(`buyer_id`, `seller_id`) VALUES (#{buyerId}, #{sellerId})
