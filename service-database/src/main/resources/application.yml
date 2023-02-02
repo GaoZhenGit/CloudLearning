@@ -30,14 +30,35 @@ spring:
             inline:
               sharding-column: uid
               algorithm-expression: ds$->{uid % 2}
-          keyGenerator:   # 指定t_student表的主键生成策略为SNOWFLAKE
+          keyGenerator:   # 指定表的主键生成策略为SNOWFLAKE
             type: SNOWFLAKE  #主键生成策略为SNOWFLAKE
             column: uid  #指定主键
             props:
               worker:
-                  id: 511  #雪花算法机器ID
+                id: 511  #雪花算法机器ID
+        order:
+          database-strategy:
+            inline:
+              sharding-column: oid
+              algorithm-expression: ds$->{oid % 2}
+          actual-data-nodes: ds$->{0..1}.order$->{0..1}
+          table-strategy:
+            inline:
+              sharding-column: oid
+              algorithm-expression: order$->{((oid/2**22) as long)%2}
+          keyGenerator:   # 指定表的主键生成策略为SNOWFLAKE
+            type: SNOWFLAKE  #主键生成策略为SNOWFLAKE
+            column: oid  #指定主键
+            props:
+              worker:
+                id: 511  #雪花算法机器ID
     props:
       sql:
         show: true
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+logging:
+  level:
+    com.codetend.service.database.mapper: debug
