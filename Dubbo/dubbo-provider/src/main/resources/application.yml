@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: dubbo-provider
+server:
+  port: ${random.int[20301,20309]}
+dubbo:
+  application:
+    name: ${spring.application.name}
+  registry:
+    address: zookeeper://localhost:2181
+  scan:
+    base-packages: com.codetend.dubbo.provider.service
+  protocol:
+    port: ${random.int[20306,20309]}
