@@ -11,7 +11,8 @@
         <module>service-consumer</module>
         <module>gateway</module>
         <module>service-database</module>
-        <module>Dubbo/dubbo-provider</module>
+        <module>dubbo/dubbo-provider</module>
+        <module>dubbo/dubbo-consumer</module>
     </modules>
 
     <parent>

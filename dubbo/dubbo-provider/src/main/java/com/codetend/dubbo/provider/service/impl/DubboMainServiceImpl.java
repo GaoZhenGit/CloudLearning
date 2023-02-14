@@ -11,10 +11,14 @@ import org.springframework.stereotype.Component;
 public class DubboMainServiceImpl implements DubboMainService {
     @Value("${server.port}")
     private int appPort;
+    private volatile int count = 0;
+
     @Override
     public CommonDataItem getData() {
+        count++;
         return CommonDataItem.builder()
                 .id("dubbo")
+                .topic(String.valueOf(count))
                 .msg("from dubbo provider:" + appPort)
                 .build();
     }
