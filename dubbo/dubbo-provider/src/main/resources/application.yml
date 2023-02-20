@@ -7,6 +7,8 @@ spring:
       retries: 10
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: com.codetend.dubbo.provider.utils.CommonDataSerializer
+      bootstrap-servers: localhost:9092
+      acks: 1
 server:
   port: ${random.int[20301,20309]}
 dubbo:

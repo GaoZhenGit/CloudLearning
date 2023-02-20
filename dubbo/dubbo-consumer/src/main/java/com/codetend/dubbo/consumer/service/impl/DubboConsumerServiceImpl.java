@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.annotation.TopicPartition;
+import org.springframework.kafka.support.Acknowledgment;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,22 +28,22 @@ public class DubboConsumerServiceImpl implements IDubboConsumerService {
     }
 
     @KafkaListener(
-            id = "dubbo-consumer",
             groupId = "kafka-consumer-dubbo",
             topicPartitions = {
                     @TopicPartition(topic = MqTopic.KAFKA_TOPIC, partitions = {"0"})
             }
     )
-    public void onKafkaMessage(CommonDataItem commonDataItem) {
+    public void onKafkaMessage(CommonDataItem commonDataItem, Acknowledgment acknowledgment) {
         log.info("receive kafka message:" + commonDataItem);
+        acknowledgment.acknowledge();
     }
 
     @KafkaListener(
-            id = "dubbo-consumer-side",
             groupId = "kafka-consumer-dubbo-side",
             topics = MqTopic.KAFKA_TOPIC_SIDE
     )
-    public void onKafkaMessageSide(CommonDataItem commonDataItem) {
+    public void onKafkaMessageSide(CommonDataItem commonDataItem, Acknowledgment acknowledgment) {
         log.info("receive kafka message:" + commonDataItem);
+        acknowledgment.acknowledge();
     }
 }

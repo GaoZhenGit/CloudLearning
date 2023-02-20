@@ -1,3 +1,5 @@
+server:
+  port: ${random.int[20401,20409]}
 spring:
   application:
     name: dubbo-consumer
@@ -5,8 +7,9 @@ spring:
     consumer:
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: com.codetend.dubbo.consumer.utils.CommonDataDeserializer
-server:
-  port: ${random.int[20401,20409]}
+      enable-auto-commit: false
+    listener:
+      ack-mode: manual
 dubbo:
   application:
     name: ${spring.application.name}
