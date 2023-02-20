@@ -12,9 +12,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DubboConsumerController {
     @Autowired
     private IDubboConsumerService dubboConsumerService;
+
     @RequestMapping("dubbo/consumer/remote/{id}")
     @ResponseBody
     public CommonDataItem remote(@PathVariable("id") String id) {
         return dubboConsumerService.remote(id);
+    }
+
+    @RequestMapping("dubbo/consumer/kafka/{topic}/{msg}")
+    @ResponseBody
+    public CommonDataItem provideKafkaMessage(@PathVariable("topic") String topic, @PathVariable("msg") String msg) {
+        return dubboConsumerService.provideKafkaMessage(
+                CommonDataItem.builder()
+                        .topic(topic)
+                        .msg(msg)
+                        .build());
     }
 }

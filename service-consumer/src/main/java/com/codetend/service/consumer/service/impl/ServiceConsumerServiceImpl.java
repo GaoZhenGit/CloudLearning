@@ -1,6 +1,6 @@
 package com.codetend.service.consumer.service.impl;
 
-import com.codetend.common.constant.RocketMqTopic;
+import com.codetend.common.constant.MqTopic;
 import com.codetend.common.entity.CommonDataItem;
 import com.codetend.service.consumer.service.IServiceConsumerService;
 import com.codetend.service.consumer.service.MySink;
@@ -72,10 +72,10 @@ public class ServiceConsumerServiceImpl implements IServiceConsumerService {
 
     @Component
     @RocketMQMessageListener(
-            topic = RocketMqTopic.ROCKETMQ_NATIVE_TOPIC,
+            topic = MqTopic.ROCKETMQ_NATIVE_TOPIC,
             selectorType = SelectorType.TAG,
             selectorExpression = "tag1||tag3",
-            consumerGroup = RocketMqTopic.ROCKETMQ_NATIVE_TOPIC_GROUP)
+            consumerGroup = MqTopic.ROCKETMQ_NATIVE_TOPIC_GROUP)
     public static class CommonListenerA implements RocketMQListener<CommonDataItem> {
         @Override
         public void onMessage(CommonDataItem message) {

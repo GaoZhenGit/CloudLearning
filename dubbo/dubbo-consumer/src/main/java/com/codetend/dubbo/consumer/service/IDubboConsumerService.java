@@ -5,4 +5,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 public interface IDubboConsumerService {
     CommonDataItem remote(String id);
+    CommonDataItem provideKafkaMessage(CommonDataItem commonDataItem);
 }

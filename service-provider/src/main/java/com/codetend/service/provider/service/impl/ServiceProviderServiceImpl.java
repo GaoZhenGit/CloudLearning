@@ -1,6 +1,5 @@
 package com.codetend.service.provider.service.impl;
 
-import com.codetend.common.constant.RocketMqTopic;
 import com.codetend.common.entity.CommonDataItem;
 import com.codetend.service.provider.service.IServiceProviderService;
 import com.codetend.service.provider.service.MySource;
