@@ -4,6 +4,7 @@ import com.codetend.common.entity.CommonDataItem;
 import com.codetend.dubbo.provider.service.DubboMainService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Service;
+import org.apache.kafka.clients.producer.RecordMetadata;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -42,7 +43,8 @@ public class DubboMainServiceImpl implements DubboMainService {
 
             @Override
             public void onSuccess(SendResult<String, CommonDataItem> stringCommonDataItemSendResult) {
-                log.info("kafka send success " + stringCommonDataItemSendResult);
+                RecordMetadata recordMetadata = stringCommonDataItemSendResult.getRecordMetadata();
+                log.info("kafka send success partition:{}, offset:{}", recordMetadata.partition(), recordMetadata.offset());
             }
         });
         return commonDataItem;
