@@ -16,7 +16,9 @@ dubbo:
     name: ${spring.application.name}
   registry:
     address: zookeeper://localhost:2181
+  metadata-report:
+    address: zookeeper://localhost:2181
   scan:
     base-packages: com.codetend.dubbo.provider.service
   protocol:
-    port: ${random.int[20306,20309]}
+    port: ${random.int[20311,20319]}
