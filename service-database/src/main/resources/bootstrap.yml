@@ -6,3 +6,5 @@ spring:
       config:
         server-addr: localhost:20000
         file-extension: yml
+  profiles:
+    active: dev
