@@ -1,5 +1,6 @@
 package com.codetend.service.database.service.impl;
 
+import com.codetend.common.response.BizException;
 import com.codetend.service.database.entity.Order;
 import com.codetend.service.database.entity.User;
 import com.codetend.service.database.mapper.OrderMapper;
@@ -7,6 +8,8 @@ import com.codetend.service.database.mapper.UserMapper;
 import com.codetend.service.database.service.IDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionTemplate;
 
 import java.util.List;
 
@@ -16,6 +19,8 @@ public class DatabaseServiceImpl implements IDatabaseService {
     private UserMapper userMapper;
     @Autowired
     private OrderMapper orderMapper;
+    @Autowired
+    private TransactionTemplate transactionTemplate;
 
     @Override
     public List<User> getUsers(int offset, int rows) {
@@ -28,8 +33,12 @@ public class DatabaseServiceImpl implements IDatabaseService {
     }
 
     @Override
+    @Transactional
     public void setUser(User user) {
         userMapper.setUser(user);
+        if (user.name.contains("v")) {
+            throw new BizException(-400, "invalid user name");
+        }
     }
 
     @Override
@@ -49,7 +58,13 @@ public class DatabaseServiceImpl implements IDatabaseService {
 
     @Override
     public void setOrder(Order order) {
-        orderMapper.setOrder(order);
+        Integer ret = transactionTemplate.execute(action -> {
+            orderMapper.setOrder(order);
+            if (order.buyerId.startsWith("00")) {
+                throw new BizException(-400, "invalid buyerId");
+            }
+            return 0;
+        });
     }
 
     @Override
