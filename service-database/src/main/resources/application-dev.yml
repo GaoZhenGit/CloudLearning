@@ -3,11 +3,14 @@ server:
 spring:
   application:
     name: service-database
-  cloud:
-    nacos:
-      discovery:
-        group: TEST_GROUP
-        server-addr: localhost:20000
+#  cloud:
+#    nacos:
+#      discovery:
+#        group: TEST_GROUP
+#        server-addr: localhost:8848
+#      config:
+#        group: TEST_GROUP
+#        server-addr: localhost:8848
   shardingsphere:
     datasource:
       names: ds0,ds1
@@ -62,3 +65,8 @@ mybatis:
 logging:
   level:
     com.codetend.service.database.mapper: debug
+
+com:
+  codetend:
+    database-helper:
+      level: los

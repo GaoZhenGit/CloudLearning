@@ -1,11 +1,13 @@
 package com.codetend.service.database.service.impl;
 
 import com.codetend.common.response.BizException;
+import com.codetend.database.helper.checker.MapperChecker;
 import com.codetend.service.database.entity.Order;
 import com.codetend.service.database.entity.User;
 import com.codetend.service.database.mapper.OrderMapper;
 import com.codetend.service.database.mapper.UserMapper;
 import com.codetend.service.database.service.IDatabaseService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,6 +16,7 @@ import org.springframework.transaction.support.TransactionTemplate;
 import java.util.List;
 
 @Service
+@Slf4j
 public class DatabaseServiceImpl implements IDatabaseService {
     @Autowired
     private UserMapper userMapper;
@@ -21,9 +24,12 @@ public class DatabaseServiceImpl implements IDatabaseService {
     private OrderMapper orderMapper;
     @Autowired
     private TransactionTemplate transactionTemplate;
+    @Autowired
+    private MapperChecker mapperChecker;
 
     @Override
     public List<User> getUsers(int offset, int rows) {
+        mapperChecker.checkMapper(userMapper);
         return userMapper.getUsers(offset, rows);
     }
 
@@ -65,6 +71,7 @@ public class DatabaseServiceImpl implements IDatabaseService {
             }
             return 0;
         });
+        log.info("setOrder finished");
     }
 
     @Override

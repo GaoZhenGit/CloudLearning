@@ -3,8 +3,12 @@ spring:
     name: service-database
   cloud:
     nacos:
+      discovery:
+        group: TEST_GROUP
+        server-addr: localhost:8848
       config:
-        server-addr: localhost:20000
+        group: TEST_GROUP
+        server-addr: localhost:8848
         file-extension: yml
   profiles:
     active: dev
