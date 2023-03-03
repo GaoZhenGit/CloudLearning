@@ -70,3 +70,4 @@ com:
   codetend:
     database-helper:
       level: los
+      limit: 2

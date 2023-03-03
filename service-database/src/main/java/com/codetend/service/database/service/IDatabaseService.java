@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface IDatabaseService {
     List<User> getUsers(int offset, int rows);
+    List<User> getUsersLimit();
     User getUser(long id);
     void setUser(User user);
     void deleteUser(long id);

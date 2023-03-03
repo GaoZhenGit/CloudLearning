@@ -8,6 +8,7 @@ import java.util.List;
 
 @Mapper
 public interface UserMapper {
+    List<User> getUsersLimit();
     List<User> getUsers(int offset, int rows);
     User getUser(@Param("uid") long uid);
     void setUser(User user);

@@ -1,7 +1,7 @@
 package com.codetend.service.database.service.impl;
 
 import com.codetend.common.response.BizException;
-import com.codetend.database.helper.checker.MapperChecker;
+import com.codetend.database.helper.core.MapperChecker;
 import com.codetend.service.database.entity.Order;
 import com.codetend.service.database.entity.User;
 import com.codetend.service.database.mapper.OrderMapper;
@@ -31,6 +31,11 @@ public class DatabaseServiceImpl implements IDatabaseService {
     public List<User> getUsers(int offset, int rows) {
         mapperChecker.checkMapper(userMapper);
         return userMapper.getUsers(offset, rows);
+    }
+
+    @Override
+    public List<User> getUsersLimit() {
+        return userMapper.getUsersLimit();
     }
 
     @Override

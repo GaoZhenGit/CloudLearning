@@ -27,9 +27,13 @@ public class ServiceDatabaseController {
     @GetMapping("/users")
     @ResponseBody
     public List<User> getUsers(
-            @RequestParam(required = false, name = "offset") int offset,
-            @RequestParam(required = false, name = "rows") int rows) {
-        return databaseService.getUsers(offset, rows);
+            @RequestParam(required = false, name = "offset") Integer offset,
+            @RequestParam(required = false, name = "rows") Integer rows) {
+        if (offset == null || rows == null) {
+            return databaseService.getUsersLimit();
+        } else {
+            return databaseService.getUsers(offset, rows);
+        }
     }
 
     @PostMapping("/user")
