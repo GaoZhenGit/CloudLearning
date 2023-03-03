@@ -1,4 +1,4 @@
-package com.codetend.database.helper.checker;
+package com.codetend.database.helper.core;
 
 import com.codetend.database.helper.DatabaseHelperProperties;
 import lombok.extern.slf4j.Slf4j;

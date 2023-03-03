@@ -10,4 +10,5 @@ import org.springframework.cloud.context.config.annotation.RefreshScope;
 @RefreshScope
 public class DatabaseHelperProperties {
     public String level;
+    public int limit = 100;
 }
