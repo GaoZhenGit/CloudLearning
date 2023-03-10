@@ -71,3 +71,18 @@ com:
     database-helper:
       level: los
       limit: 2
+
+seata:
+  config:
+    type: file
+  application-id: ${spring.application.name}
+  #  enable-auto-data-source-proxy: false
+  registry:
+    type: file
+  service:
+    grouplist:
+      default: localhost:8091
+    vgroup-mapping:
+      springboot-seata-group-1: default
+  # seata 事务组编号 用于TC集群名
+  tx-service-group: springboot-seata-group-1

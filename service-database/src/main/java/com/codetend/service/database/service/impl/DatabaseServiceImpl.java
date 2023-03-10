@@ -1,15 +1,22 @@
 package com.codetend.service.database.service.impl;
 
 import com.codetend.common.response.BizException;
+import com.codetend.common.response.ResponseResult;
 import com.codetend.database.helper.core.MapperChecker;
+import com.codetend.service.database.config.SnowflakeDistributeId;
 import com.codetend.service.database.entity.Order;
 import com.codetend.service.database.entity.User;
+import com.codetend.service.database.entity.UserAndOrder;
 import com.codetend.service.database.mapper.OrderMapper;
 import com.codetend.service.database.mapper.UserMapper;
 import com.codetend.service.database.service.IDatabaseService;
+import com.codetend.service.database.service.RemoteOrderService;
+import com.codetend.service.database.service.RemoteUserService;
+import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
 
@@ -26,6 +33,13 @@ public class DatabaseServiceImpl implements IDatabaseService {
     private TransactionTemplate transactionTemplate;
     @Autowired
     private MapperChecker mapperChecker;
+
+    @Autowired
+    private RemoteUserService remoteUserService;
+    @Autowired
+    private RemoteOrderService remoteOrderService;
+    @Autowired
+    private SnowflakeDistributeId snowflakeDistributeId;
 
     @Override
     public List<User> getUsers(int offset, int rows) {
@@ -82,5 +96,39 @@ public class DatabaseServiceImpl implements IDatabaseService {
     @Override
     public void deleteOrder(long id) {
         orderMapper.deleteOrder(id);
+    }
+
+    @Override
+    @GlobalTransactional
+    public void addUserAndOrder(UserAndOrder userAndOrder) {
+        log.info("begin tx");
+
+        ResponseResult<?> result1 = remoteOrderService.addOrder(userAndOrder.order);
+        if (result1.getCode() != 0) {
+            log.info("order tx fail");
+            throw new BizException(result1.getCode(), result1.getMsg());
+        }
+
+        ResponseResult<?> result2 = remoteUserService.addUser(userAndOrder.user);
+        if (result2.getCode() != 0) {
+            log.info("user tx fail");
+            throw new BizException(result2.getCode(), result2.getMsg());
+        }
+        log.info("end tx");
+    }
+
+    @Override
+    public void addUserRemote(User user) {
+        user.uid = snowflakeDistributeId.nextId();
+        userMapper.setUserFull(user);
+        if (user.name.contains("err")) {
+            throw new BizException(-502, "mock user tx err");
+        }
+    }
+
+    @Override
+    public void addOrderRemote(Order order) {
+        order.oid = snowflakeDistributeId.nextId();
+        orderMapper.setOrderFull(order);
     }
 }

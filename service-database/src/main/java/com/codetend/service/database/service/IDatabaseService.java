@@ -2,6 +2,7 @@ package com.codetend.service.database.service;
 
 import com.codetend.service.database.entity.Order;
 import com.codetend.service.database.entity.User;
+import com.codetend.service.database.entity.UserAndOrder;
 
 import java.util.List;
 
@@ -16,4 +17,8 @@ public interface IDatabaseService {
     Order getOrder(long id);
     void setOrder(Order user);
     void deleteOrder(long id);
+
+    void addUserAndOrder(UserAndOrder userAndOrder);
+    void addUserRemote(User user);
+    void addOrderRemote(Order order);
 }
