@@ -1,0 +1,31 @@
+server:
+  port: 20401
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  configuration:
+    mapUnderscoreToCamelCase: true
+logging:
+  level:
+    com.codetend.service.database.mapper: debug
+seata:
+  config:
+    type: file
+  application-id: ${spring.application.name}
+  #  enable-auto-data-source-proxy: false
+  registry:
+    type: file
+  service:
+    grouplist:
+      default: localhost:8091
+    vgroup-mapping:
+      springboot-seata-group-1: default
+  # seata 事务组编号 用于TC集群名
+  tx-service-group: springboot-seata-group-1
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://localhost:13307/sharding?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    username: root
+    password: 123456

@@ -13,7 +13,7 @@
         <module>service-database</module>
         <module>dubbo/dubbo-provider</module>
         <module>dubbo/dubbo-consumer</module>
-
+        <module>seata/service-seata-main</module>
         <module>starter/database-helper-spring-boot-starter</module>
     </modules>
 

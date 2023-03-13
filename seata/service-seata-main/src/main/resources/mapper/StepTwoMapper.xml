@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.codetend.service.txseata.mapper.StepTwoMapper">
+    <select id="getStep" resultType="com.codetend.service.txseata.entity.StepTwoEntity">
+        SELECT `sid`, `name`, `time` FROM `step_two` WHERE sid=#{sid}
+    </select>
+    <select id="getSteps" resultType="com.codetend.service.txseata.entity.StepTwoEntity">
+        SELECT `sid`, `name`, `time` FROM `step_two`
+    </select>
+    <insert id="addStep" parameterType="com.codetend.service.txseata.entity.StepTwoEntity">
+        insert into `step_two`(`sid`, `name`, `time`) VALUES (#{sid}, #{name}, #{time})
+    </insert>
+    <delete id="deleteStep">
+        delete from `step_two` WHERE sid=#{sid}
+    </delete>
+</mapper>
