@@ -12,22 +12,23 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Component;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
-@Service
+import java.util.concurrent.atomic.AtomicInteger;
+
+@Service(version = "1.0.0")
 @Component
 @Slf4j
 public class DubboMainServiceImpl implements DubboMainService {
     @Value("${server.port}")
     private int appPort;
-    private volatile int count = 0;
+    private final AtomicInteger count = new AtomicInteger(0);
     @Autowired
     private KafkaTemplate<String, CommonDataItem> kafkaTemplate;
 
     @Override
     public CommonDataItem getData() {
-        count++;
         return CommonDataItem.builder()
                 .id("dubbo")
-                .topic(String.valueOf(count))
+                .topic(String.valueOf(count.getAndIncrement()))
                 .msg("from dubbo provider:" + appPort)
                 .build();
     }
