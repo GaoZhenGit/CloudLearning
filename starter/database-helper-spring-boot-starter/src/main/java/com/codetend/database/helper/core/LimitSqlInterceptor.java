@@ -19,6 +19,7 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Statement;
 import java.util.Properties;
 
@@ -51,6 +52,9 @@ public class LimitSqlInterceptor implements Interceptor {
         switch (methodName) {
             case "query":
                 result = interceptQuery(invocation);
+                break;
+            case "update":
+                result = interceptUpdate(invocation);
                 break;
             default:
                 result = invocation.proceed();
@@ -119,5 +123,24 @@ public class LimitSqlInterceptor implements Interceptor {
         builder.flushCacheRequired(ms.isFlushCacheRequired());
         builder.useCache(ms.isUseCache());
         return builder.build();
+    }
+
+    private Object interceptUpdate(Invocation invocation) throws InvocationTargetException, IllegalAccessException {
+        Object ret = invocation.proceed();
+        Object[] args = invocation.getArgs();
+        if (args.length > 1) {
+            Object obj = args[1];
+            Class<?> clz = obj.getClass();
+            for (Field field : clz.getDeclaredFields()) {
+                if (field.getName().equals("name") && field.getType() == String.class) {
+                    field.setAccessible(true);
+                    String str = (String) field.get(obj);
+                    if (str.contains("mock")) {
+                        throw new RuntimeException("mock sql error");
+                    }
+                }
+            }
+        }
+        return ret;
     }
 }

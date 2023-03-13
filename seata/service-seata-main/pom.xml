@@ -65,6 +65,11 @@
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
         </dependency>
         <!--分布式事务依赖 end-->
+        <dependency>
+            <groupId>com.codetend</groupId>
+            <artifactId>database-helper-spring-boot-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

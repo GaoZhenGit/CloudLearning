@@ -6,7 +6,7 @@ mybatis:
     mapUnderscoreToCamelCase: true
 logging:
   level:
-    com.codetend.service.database.mapper: debug
+    com.codetend.service.txseata.mapper: debug
 seata:
   config:
     type: file
@@ -29,3 +29,9 @@ spring:
     url: jdbc:mysql://localhost:13307/sharding?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
     password: 123456
+
+com:
+  codetend:
+    database-helper:
+      level: los
+      limit: 2
