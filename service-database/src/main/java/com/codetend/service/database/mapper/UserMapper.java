@@ -12,6 +12,5 @@ public interface UserMapper {
     List<User> getUsers(int offset, int rows);
     User getUser(@Param("uid") long uid);
     void setUser(User user);
-    void setUserFull(User user);
     void deleteUser(@Param("uid") long uid);
 }

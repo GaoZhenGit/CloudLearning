@@ -4,7 +4,6 @@ import com.codetend.common.entity.CommonDataItem;
 import com.codetend.common.response.BaseResponse;
 import com.codetend.service.database.entity.Order;
 import com.codetend.service.database.entity.User;
-import com.codetend.service.database.entity.UserAndOrder;
 import com.codetend.service.database.service.IDatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -61,23 +60,5 @@ public class ServiceDatabaseController {
     @ResponseBody
     public void addOrder(@RequestBody Order order) {
         databaseService.setOrder(order);
-    }
-
-    @RequestMapping("/addUserAndOrder")
-    @ResponseBody
-    public void addUserAndOrder(@RequestBody UserAndOrder userAndOrder) {
-        databaseService.addUserAndOrder(userAndOrder);
-    }
-
-    @RequestMapping("/addUser")
-    @ResponseBody
-    public void addUserRemote(@RequestBody User user) {
-        databaseService.addUserRemote(user);
-    }
-
-    @RequestMapping("/addOrder")
-    @ResponseBody
-    public void addOrderRemote(@RequestBody Order order) {
-        databaseService.addOrderRemote(order);
     }
 }

@@ -11,6 +11,5 @@ public interface OrderMapper {
     List<Order> getOrders(int offset, int rows);
     Order getOrder(@Param("oid") long uid);
     void setOrder(Order Order);
-    void setOrderFull(Order order);
     void deleteOrder(@Param("oid") long uid);
 }

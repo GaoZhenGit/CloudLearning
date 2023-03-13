@@ -13,9 +13,6 @@
     <insert id="setUser" parameterType="com.codetend.service.database.entity.User">
         insert into user(`name`, `desc`) VALUES (#{name}, #{desc})
     </insert>
-    <insert id="setUserFull" parameterType="com.codetend.service.database.entity.User">
-        insert into user(`name`, `desc`, `uid`) VALUES (#{name}, #{desc}, #{uid})
-    </insert>
     <delete id="deleteUser">
         delete from user WHERE uid=#{uid}
     </delete>

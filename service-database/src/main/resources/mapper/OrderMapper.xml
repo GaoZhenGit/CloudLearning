@@ -10,9 +10,6 @@
     <insert id="setOrder" parameterType="com.codetend.service.database.entity.Order">
         insert into `order`(`buyer_id`, `seller_id`) VALUES (#{buyerId}, #{sellerId})
     </insert>
-    <insert id="setOrderFull" parameterType="com.codetend.service.database.entity.Order">
-        insert into `order`(`buyer_id`, `seller_id`, `oid`) VALUES (#{buyerId}, #{sellerId}, #{oid})
-    </insert>
     <delete id="deleteOrder">
         delete from `order` WHERE oid=#{oid}
     </delete>
