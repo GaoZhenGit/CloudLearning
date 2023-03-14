@@ -19,7 +19,11 @@ public interface FeignOneService {
 
     @PostMapping("/addStep")
     @ResponseBody
-    ResponseResult<?> addStep(@RequestBody StepOneEntity stepOneEntity);
+    ResponseResult<Void> addStep(@RequestBody StepOneEntity stepOneEntity);
+
+    @PostMapping("/updateStep/{amount}")
+    @ResponseBody
+    ResponseResult<Void> updateStep(@RequestBody StepOneEntity stepOneEntity, @PathVariable("amount") long amount);
 
     @PostMapping("/deleteStep/{sid}")
     @ResponseBody

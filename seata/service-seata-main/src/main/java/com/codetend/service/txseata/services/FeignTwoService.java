@@ -21,6 +21,10 @@ public interface FeignTwoService {
     @ResponseBody
     ResponseResult<Void> addStep(@RequestBody StepTwoEntity stepTwoEntity);
 
+    @PostMapping("/updateStep/{amount}")
+    @ResponseBody
+    ResponseResult<Void> updateStep(@RequestBody StepTwoEntity stepTwoEntity, @PathVariable("amount") long amount);
+
     @PostMapping("/deleteStep/{sid}")
     @ResponseBody
     ResponseResult<Void> deleteStep(@PathVariable("sid") long sid);

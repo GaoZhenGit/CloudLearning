@@ -8,5 +8,6 @@ public interface IServiceSeataOneService {
     List<StepOneEntity> getSteps();
     StepOneEntity getStep(long sid);
     void addStep(StepOneEntity stepOneEntity);
+    void updateStep(StepOneEntity stepOneEntity, long amount);
     void deleteStep(long sid);
 }

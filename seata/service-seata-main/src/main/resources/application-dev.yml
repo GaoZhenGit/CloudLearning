@@ -21,6 +21,10 @@ seata:
       springboot-seata-group-1: default
   # seata 事务组编号 用于TC集群名
   tx-service-group: springboot-seata-group-1
+  client:
+    rm:
+      lock:
+        retry-interval: 5000
 
 spring:
   datasource:
@@ -29,9 +33,14 @@ spring:
     url: jdbc:mysql://localhost:13307/sharding?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
     password: 123456
-
 com:
   codetend:
     database-helper:
       level: los
       limit: 2
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 60000
+        readTimeout: 60000

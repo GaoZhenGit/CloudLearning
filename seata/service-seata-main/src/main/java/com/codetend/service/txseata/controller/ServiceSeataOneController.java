@@ -33,6 +33,12 @@ public class ServiceSeataOneController {
         serviceSeataOneService.addStep(stepOneEntity);
     }
 
+    @PostMapping("/updateStep/{amount}")
+    @ResponseBody
+    public void updateStep(@RequestBody StepOneEntity stepOneEntity, @PathVariable("amount") long amount) {
+        serviceSeataOneService.updateStep(stepOneEntity, amount);
+    }
+
     @PostMapping("/deleteStep/{sid}")
     @ResponseBody
     public void deleteStep(@PathVariable("sid") long sid) {

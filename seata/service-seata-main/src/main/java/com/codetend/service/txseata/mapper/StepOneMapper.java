@@ -11,5 +11,6 @@ public interface StepOneMapper {
     List<StepOneEntity> getSteps();
     StepOneEntity getStep(@Param("sid") long sid);
     void addStep(StepOneEntity stepOneEntity);
+    void updateStep(StepOneEntity stepOneEntity);
     void deleteStep(@Param("sid") long sid);
 }

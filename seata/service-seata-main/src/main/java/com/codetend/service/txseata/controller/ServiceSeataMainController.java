@@ -19,4 +19,16 @@ public class ServiceSeataMainController {
     public void addDoubleSteps(@RequestBody FullStep fullStep) {
         seataMainService.addDoubleSteps(fullStep);
     }
+
+    @GetMapping("/getStep/")
+    @ResponseBody
+    public FullStep getStep(@RequestBody FullStep fullStep) {
+        return seataMainService.getStep(fullStep);
+    }
+
+    @PostMapping("/tranStep/{amount}")
+    @ResponseBody
+    public void tranStep(@RequestBody FullStep fullStep, @PathVariable("amount") long amount) {
+        seataMainService.tranStep(fullStep, amount);
+    }
 }

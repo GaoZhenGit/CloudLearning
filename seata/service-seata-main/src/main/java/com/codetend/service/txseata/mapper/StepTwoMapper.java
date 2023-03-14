@@ -11,5 +11,6 @@ public interface StepTwoMapper {
     List<StepTwoEntity> getSteps();
     StepTwoEntity getStep(@Param("sid") long sid);
     void addStep(StepTwoEntity stepOneEntity);
+    void updateStep(StepTwoEntity stepOneEntity);
     void deleteStep(@Param("sid") long sid);
 }

@@ -7,6 +7,7 @@ import java.util.List;
 public interface IServiceSeataTwoService {
     List<StepTwoEntity> getSteps();
     StepTwoEntity getStep(long sid);
-    void addStep(StepTwoEntity StepTwoEntity);
+    void addStep(StepTwoEntity stepTwoEntity);
+    void updateStep(StepTwoEntity stepTwoEntity, long amount);
     void deleteStep(long sid);
 }

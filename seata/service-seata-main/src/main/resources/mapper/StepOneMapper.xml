@@ -2,15 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.codetend.service.txseata.mapper.StepOneMapper">
     <select id="getStep" resultType="com.codetend.service.txseata.entity.StepOneEntity">
-        SELECT `sid`, `name`, `time` FROM `step_one` WHERE sid=#{sid}
+        SELECT `sid`, `name`, `time`
+        FROM `step_one`
+        WHERE sid = #{sid} limit 1 for update
     </select>
     <select id="getSteps" resultType="com.codetend.service.txseata.entity.StepOneEntity">
-        SELECT `sid`, `name`, `time` FROM `step_one`
+        SELECT `sid`, `name`, `time`
+        FROM `step_one`
     </select>
     <insert id="addStep" parameterType="com.codetend.service.txseata.entity.StepOneEntity">
-        insert into `step_one`(`sid`, `name`, `time`) VALUES (#{sid}, #{name}, #{time})
+        insert into `step_one`(`sid`, `name`, `time`)
+        VALUES (#{sid}, #{name}, #{time})
     </insert>
+    <update id="updateStep" parameterType="com.codetend.service.txseata.entity.StepOneEntity">
+        update `step_one`
+        set `name`=#{name},
+            `time`=#{time}
+        where `sid` = #{sid}
+    </update>
     <delete id="deleteStep">
-        delete from `step_one` WHERE sid=#{sid}
+        delete
+        from `step_one`
+        WHERE sid = #{sid}
     </delete>
 </mapper>
