@@ -4,10 +4,10 @@ spring:
   application:
     name: service-provider
   cloud:
-    nacos:
-      discovery:
-        group: TEST_GROUP
-        server-addr: localhost:20000
+#    nacos:
+#      discovery:
+#        group: TEST_GROUP
+#        server-addr: localhost:20000
     stream:
       rocketmq:
         binder:
@@ -24,3 +24,10 @@ rocketmq:
   name-server: localhost:9876
   producer:
     group: native_topic_group1
+
+elasticsearch:
+  host: localhost
+  port: 9200
+  connTimeout: 3000
+  socketTimeout: 5000
+  connectionRequestTimeout: 500
