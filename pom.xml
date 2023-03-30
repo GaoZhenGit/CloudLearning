@@ -15,6 +15,7 @@
         <module>dubbo/dubbo-consumer</module>
         <module>seata/service-seata-main</module>
         <module>starter/database-helper-spring-boot-starter</module>
+        <module>datasource/multi-source</module>
     </modules>
 
     <parent>
