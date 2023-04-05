@@ -1,0 +1,73 @@
+2023-04-05 22:36:14.244  WARN 27640 --- [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[multi-source] & group[TEST_GROUP]
+2023-04-05 22:36:14.248  WARN 27640 --- [main] c.a.c.n.c.NacosPropertySourceBuilder     : Ignore the empty nacos configuration and get it based on dataId[multi-source.yml] & group[TEST_GROUP]
+2023-04-05 22:36:14.249  INFO 27640 --- [main] b.c.PropertySourceBootstrapConfiguration : Located property source: [BootstrapPropertySource {name='bootstrapProperties-multi-source.yml,TEST_GROUP'}, BootstrapPropertySource {name='bootstrapProperties-multi-source,TEST_GROUP'}]
+2023-04-05 22:36:14.274  INFO 27640 --- [main] c.c.d.multi.MultiSourceApplication       : No active profile set, falling back to default profiles: default
+2023-04-05 22:36:14.687  INFO 27640 --- [main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=4d51a194-73f4-363b-82f2-217e3fe7caeb
+2023-04-05 22:36:14.970  INFO 27640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 20501 (http)
+2023-04-05 22:36:14.976  INFO 27640 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-04-05 22:36:14.976  INFO 27640 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.46]
+2023-04-05 22:36:15.087  INFO 27640 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-04-05 22:36:15.087  INFO 27640 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 804 ms
+2023-04-05 22:36:15.357  WARN 27640 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2023-04-05 22:36:15.357  INFO 27640 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2023-04-05 22:36:15.359  WARN 27640 --- [main] c.n.c.sources.URLConfigurationSource     : No URLs will be polled as dynamic configuration sources.
+2023-04-05 22:36:15.360  INFO 27640 --- [main] c.n.c.sources.URLConfigurationSource     : To enable URLs as dynamic configuration sources, define System property archaius.configurationSource.additionalUrls or make config.properties available on classpath.
+2023-04-05 22:36:17.106  INFO 27640 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-04-05 22:36:19.190  INFO 27640 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-04-05 22:36:19.271  INFO 27640 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 20501 (http) with context path ''
+2023-04-05 22:36:19.274  INFO 27640 --- [main] c.a.n.client.env.SearchableProperties    : properties search order:PROPERTIES->JVM->ENV->DEFAULT_SETTING
+2023-04-05 22:36:19.274  INFO 27640 --- [main] com.alibaba.nacos.client.naming          : initializer namespace from System Property : null
+2023-04-05 22:36:19.274  INFO 27640 --- [main] com.alibaba.nacos.client.naming          : initializer namespace from System Environment :null
+2023-04-05 22:36:19.274  INFO 27640 --- [main] com.alibaba.nacos.client.naming          : initializer namespace from System Property :
+2023-04-05 22:36:19.279  INFO 27640 --- [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.impl.NacosClientAuthServiceImpl success.
+2023-04-05 22:36:19.279  INFO 27640 --- [main] c.a.n.p.a.s.c.ClientAuthPluginManager    : [ClientAuthPluginManager] Load ClientAuthService com.alibaba.nacos.client.auth.ram.RamClientAuthServiceImpl success.
+2023-04-05 22:36:19.281  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [RpcClientFactory] create a new rpc client of 56fae11b-ab3f-4532-b081-0cd0bf2ae0ee
+2023-04-05 22:36:19.282  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] RpcClient init, ServerListFactory = com.alibaba.nacos.client.naming.core.ServerListManager
+2023-04-05 22:36:19.282  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Registry connection listener to current client:com.alibaba.nacos.client.naming.remote.gprc.redo.NamingGrpcRedoService
+2023-04-05 22:36:19.283  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Register server push request handler:com.alibaba.nacos.client.naming.remote.gprc.NamingPushRequestHandler
+2023-04-05 22:36:19.283  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Try to connect to server on start up, server: {serverIp = 'localhost', server main port = 8848}
+2023-04-05 22:36:19.398  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Success to connect to server [localhost:8848] on start up, connectionId = 1680705379288_127.0.0.1_60261
+2023-04-05 22:36:19.398  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$ConnectResetRequestHandler
+2023-04-05 22:36:19.398  INFO 27640 --- [main] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Register server push request handler:com.alibaba.nacos.common.remote.client.RpcClient$$Lambda$283/1642308093
+2023-04-05 22:36:19.398  INFO 27640 --- [com.alibaba.nacos.client.remote.worker] com.alibaba.nacos.common.remote.client   : [56fae11b-ab3f-4532-b081-0cd0bf2ae0ee] Notify connected event to listeners.
+2023-04-05 22:36:19.398  INFO 27640 --- [com.alibaba.nacos.client.remote.worker] com.alibaba.nacos.client.naming          : Grpc connection connect
+2023-04-05 22:36:19.399  INFO 27640 --- [main] com.alibaba.nacos.client.naming          : [REGISTER-SERVICE] public registering service multi-source with instance Instance{instanceId='null', ip='169.254.108.129', port=20501, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={preserved.register.source=SPRING_CLOUD}}
+2023-04-05 22:36:19.407  INFO 27640 --- [main] c.a.c.n.registry.NacosServiceRegistry    : nacos registry, TEST_GROUP multi-source 169.254.108.129:20501 register finished
+2023-04-05 22:36:20.893  INFO 27640 --- [main] o.s.cloud.commons.util.InetUtils         : Cannot determine local hostname
+2023-04-05 22:36:20.899  INFO 27640 --- [main] c.c.d.multi.MultiSourceApplication       : Started MultiSourceApplication in 11.827 seconds (JVM running for 12.705)
+2023-04-05 22:36:20.901  INFO 27640 --- [main] c.a.nacos.client.config.impl.CacheData   : nacos.cache.data.init.snapshot = true 
+2023-04-05 22:36:20.902  INFO 27640 --- [main] c.a.n.client.config.impl.ClientWorker    : [fixed-localhost_8848] [subscribe] multi-source+TEST_GROUP
+2023-04-05 22:36:20.907  INFO 27640 --- [main] c.a.nacos.client.config.impl.CacheData   : [fixed-localhost_8848] [add-listener] ok, tenant=, dataId=multi-source, group=TEST_GROUP, cnt=1
+2023-04-05 22:36:20.907  INFO 27640 --- [main] c.a.n.client.config.impl.ClientWorker    : [fixed-localhost_8848] [subscribe] multi-source.yml+TEST_GROUP
+2023-04-05 22:36:20.907  INFO 27640 --- [main] c.a.nacos.client.config.impl.CacheData   : [fixed-localhost_8848] [add-listener] ok, tenant=, dataId=multi-source.yml, group=TEST_GROUP, cnt=1
+2023-04-05 22:46:16.590  WARN 27640 --- [Thread-5] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Start destroying common HttpClient
+2023-04-05 22:46:16.590  WARN 27640 --- [Thread-14] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Start destroying Publisher
+2023-04-05 22:46:16.591  WARN 27640 --- [Thread-14] c.a.nacos.common.notify.NotifyCenter     : [NotifyCenter] Destruction of the end
+2023-04-05 22:46:16.591  WARN 27640 --- [Thread-5] c.a.n.common.http.HttpClientBeanHolder   : [HttpClientBeanHolder] Destruction of the end
+2023-04-05 22:46:16.923  INFO 27640 --- [SpringContextShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registering from Nacos Server now...
+2023-04-05 22:46:16.923  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : [DEREGISTER-SERVICE] public deregistering service multi-source with instance: Instance{instanceId='null', ip='169.254.108.129', port=20501, weight=1.0, healthy=true, enabled=true, ephemeral=true, clusterName='DEFAULT', serviceName='null', metadata={}}
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] c.a.c.n.registry.NacosServiceRegistry    : De-registration finished.
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown begin
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown begin
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.backups.FailoverReactor do shutdown stop
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.cache.ServiceInfoHolder do shutdown stop
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown begin
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown begin
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServiceInfoUpdateService do shutdown stop
+2023-04-05 22:46:16.926  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown begin
+2023-04-05 22:46:16.926  WARN 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2023-04-05 22:46:16.927  WARN 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2023-04-05 22:46:16.927  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.core.ServerListManager do shutdown stop
+2023-04-05 22:46:16.927  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown begin
+2023-04-05 22:46:16.927  WARN 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Start destroying NacosRestTemplate
+2023-04-05 22:46:16.927  WARN 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : [NamingHttpClientManager] Destruction of the end
+2023-04-05 22:46:16.927  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.http.NamingHttpClientProxy do shutdown stop
+2023-04-05 22:46:16.927  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown rpc client, set status to shutdown
+2023-04-05 22:46:16.927  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.common.remote.client   : Shutdown client event executor java.util.concurrent.ScheduledThreadPoolExecutor@60ae7145[Running, pool size = 2, active threads = 2, queued tasks = 0, completed tasks = 0]
+2023-04-05 22:46:16.927  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.common.remote.client   : Close current connection 1680705379288_127.0.0.1_60261
+2023-04-05 22:46:16.928  INFO 27640 --- [nacos-grpc-client-executor-localhost-139] c.a.n.c.remote.client.grpc.GrpcClient    : [1680705379288_127.0.0.1_60261]Ignore complete event,isRunning:false,isAbandon=false
+2023-04-05 22:46:16.930  INFO 27640 --- [SpringContextShutdownHook] c.a.n.c.remote.client.grpc.GrpcClient    : Shutdown grpc executor java.util.concurrent.ThreadPoolExecutor@413659b4[Running, pool size = 4, active threads = 0, queued tasks = 0, completed tasks = 140]
+2023-04-05 22:46:16.930  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : Shutdown grpc redo service executor java.util.concurrent.ScheduledThreadPoolExecutor@4f264557[Running, pool size = 1, active threads = 0, queued tasks = 1, completed tasks = 198]
+2023-04-05 22:46:16.930  INFO 27640 --- [SpringContextShutdownHook] c.a.n.c.a.r.identify.CredentialWatcher   : [null] CredentialWatcher is stopped
+2023-04-05 22:46:16.930  INFO 27640 --- [SpringContextShutdownHook] c.a.n.c.a.r.identify.CredentialService   : [null] CredentialService is freed
+2023-04-05 22:46:16.931  INFO 27640 --- [SpringContextShutdownHook] com.alibaba.nacos.client.naming          : com.alibaba.nacos.client.naming.remote.NamingClientProxyDelegate do shutdown stop

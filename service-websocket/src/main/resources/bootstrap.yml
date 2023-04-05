@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: service-websocket
+  cloud:
+    nacos:
+      discovery:
+        group: TEST_GROUP
+        server-addr: localhost:8848
+      config:
+        group: TEST_GROUP
+        server-addr: localhost:8848
+        file-extension: yml

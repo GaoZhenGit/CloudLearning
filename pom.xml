@@ -16,6 +16,7 @@
         <module>seata/service-seata-main</module>
         <module>starter/database-helper-spring-boot-starter</module>
         <module>datasource/multi-source</module>
+        <module>service-websocket</module>
     </modules>
 
     <parent>

@@ -17,3 +17,9 @@ second:
     url: jdbc:mysql://localhost:13308/sharding?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
     username: root
     password: 123456
+
+logging:
+  level:
+    com.codetend.datasource.multi.mapper: debug
+  file:
+    name: D:\MyProjects\CloudLearning\logs\${spring.application.name}.log
