@@ -1,0 +1,71 @@
+version : '3.8'
+services:
+  codetend-mysql:
+    container_name: ${PROJECT_NAME}-mysql
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    command: [
+      'mysqld',
+      '--innodb-buffer-pool-size=80M',
+      '--character-set-server=utf8mb4',
+      '--collation-server=utf8mb4_unicode_ci',
+      '--default-time-zone=+8:00',
+      '--lower-case-table-names=1'
+    ]
+    volumes:
+      - ${MYSQL_PATH}/conf:/etc/mysql/conf.d
+      - ${MYSQL_PATH}/logs:/logs
+      - ${MYSQL_PATH}/data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: 'nacos_config'
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - jpaas
+  codetend-nacos:
+    container_name: ${PROJECT_NAME}-nacos
+    image: nacos/nacos-server:latest
+    environment:
+      - MODE=standalone
+      - PREFER_HOST_MODE=hostname
+      - SPRING_DATASOURCE_PLATFORM=mysql
+      - MYSQL_SERVICE_HOST=${PROJECT_NAME}-mysql
+      - MYSQL_SERVICE_PORT=3306
+      - MYSQL_SERVICE_USER=root
+      - MYSQL_SERVICE_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_SERVICE_DB_NAME=nacos_config
+    volumes:
+      - ${NACOS_PATH}/logs/:/home/nacos/logs
+    ports:
+      - "8848:8848"
+      - "9848:9848"
+      - "9849:9849"
+    networks:
+      - jpaas
+    depends_on:
+      - codetend-mysql
+  codetend-redis:
+    container_name: ${PROJECT_NAME}-redis
+    image: redis:latest
+    ports:
+      - "6379:6379"
+#    volumes:
+#      - ${REDIS_PATH}/conf/redis.conf:/etc/redis/redis.conf
+#      - ./redis/data:/data
+#    command: redis-server /etc/redis/redis.conf
+    networks:
+      - jpaas
+  codetend-nginx:
+    container_name: ${PROJECT_NAME}-nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ${NGINX_PATH}/html:/usr/share/nginx/html
+      - ${NGINX_PATH}/conf/nginx.conf:/etc/nginx/nginx.conf
+      - ${NGINX_PATH}/logs:/var/log/nginx
+    networks:
+      - jpaas
+networks:
+  jpaas:
+    driver: bridge
