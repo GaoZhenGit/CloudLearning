@@ -17,6 +17,7 @@
         <module>starter/database-helper-spring-boot-starter</module>
         <module>datasource/multi-source</module>
         <module>service-websocket</module>
+        <module>service-static</module>
     </modules>
 
     <parent>
