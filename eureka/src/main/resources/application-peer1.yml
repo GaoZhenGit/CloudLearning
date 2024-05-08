@@ -5,6 +5,10 @@ server:
 spring:
   application:
     name: Eureka-Discovery-Server
+  security:
+    user:
+      name: eureka
+      password: eureka
 eureka:
   instance:
     hostname: peer1  # Eureka服务端实例名称
@@ -14,4 +18,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://peer1:18761${server.servlet.context-path}/eureka/,http://peer2:28761${server.servlet.context-path}/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@peer1:18761${server.servlet.context-path}/eureka/,http://${spring.security.user.name}:${spring.security.user.password}@peer2:28761${server.servlet.context-path}/eureka/
