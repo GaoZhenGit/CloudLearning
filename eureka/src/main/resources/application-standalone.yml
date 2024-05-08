@@ -1,0 +1,17 @@
+server:
+  port: 8761
+  servlet:
+    context-path: /cce
+spring:
+  application:
+    name: Eureka-Discovery-Server
+eureka:
+  instance:
+    hostname: localhost  # Eureka服务端实例名称
+    prefer-ip-address: false
+    instance-id: MAIN-EUREKA
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

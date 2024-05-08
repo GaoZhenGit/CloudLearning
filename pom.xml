@@ -18,6 +18,7 @@
         <module>datasource/multi-source</module>
         <module>service-websocket</module>
         <module>service-static</module>
+        <module>eureka</module>
     </modules>
 
     <parent>

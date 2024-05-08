@@ -1,0 +1,17 @@
+server:
+  port: 18761
+  servlet:
+    context-path: /cce
+spring:
+  application:
+    name: Eureka-Discovery-Server
+eureka:
+  instance:
+    hostname: peer1  # Eureka服务端实例名称
+    prefer-ip-address: false
+    instance-id: peer1
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://peer1:18761${server.servlet.context-path}/eureka/,http://peer2:28761${server.servlet.context-path}/eureka/
