@@ -19,6 +19,7 @@
         <module>service-websocket</module>
         <module>service-static</module>
         <module>eureka</module>
+        <module>udp-gate</module>
     </modules>
 
     <parent>
