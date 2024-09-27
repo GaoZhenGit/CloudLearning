@@ -120,11 +120,11 @@ public class StunPacket {
     }
 
     private static int get2Bytes(byte[] data, int i) {
-        return data[i + 1] + (data[i] << 8);
+        return (0xFF & data[i]) << 8 + (0xFF & data[i + 1]);
     }
 
     private static int get4Bytes(byte[] data, int i) {
-        return data[i + 3] + (data[i + 2] << 8) + (data[i + 1] << 16) + (data[i] << 24);
+        return ((0xFF & data[i]) << 24) + ((0xFF & data[i+1]) << 16) + ((0xFF & data[i+2]) << 8) + (0xFF & data[i + 3]);
     }
 
     private static int padTo4Bytes(int size) {
@@ -176,4 +176,9 @@ public class StunPacket {
     private String username;
     private int priority;
     private byte messageIntegrity;
+
+    public static void main(String[] srga) {
+        byte[] data = {(byte) 0x01, (byte) 0x02};
+        System.out.println(Integer.toHexString(get4Bytes(MagicCookie, 0)));
+    }
 }
