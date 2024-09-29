@@ -100,6 +100,7 @@ public class StunPacket {
             return null;
         }
         if (isStun(data, offset, len)) {
+            // skip the stun header
             int pos = 20 + offset;
             while (pos + 4 <= len) {
                 // Get the attribute type.
@@ -111,13 +112,12 @@ public class StunPacket {
                     log.error("the attribute length exceeds the remaining size, packet discarded");
                     return null;
                 }
+                // exclude the attrType(2 bytes) and attrType(2 bytes)
                 int attrValuePos = pos + 4;
                 if (attrType == Attribute.USERNAME.value) {
-                    byte[] userNameByte = new byte[attrLength];
-                    System.arraycopy(data, attrValuePos, userNameByte, 0, attrLength);
-                    return new String(userNameByte);
+                    return new String(data, attrValuePos, attrLength);
                 }
-                pos = padTo4Bytes(pos + 4 + attrLength);
+                pos = padTo4Bytes(attrValuePos + attrLength);
             }
         }
         return null;
