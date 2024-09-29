@@ -9,7 +9,7 @@ public class StunPacket {
     private static final byte[] MagicCookie = new byte[]{(byte) 0x21, (byte) 0x12, (byte) 0xA4, (byte) 0x42};
 
     public static StunPacket parse(byte[] data, int len) {
-        if (!isStun(data, len)) {
+        if (!isStun(data, 0, len)) {
             return null;
         }
         // Get type field.
@@ -95,15 +95,43 @@ public class StunPacket {
         return stunPacket;
     }
 
-    public static boolean isStun(byte[] data, int len) {
+    public static String getStunUseName(byte[] data, int offset, int len) {
+        if (data.length < offset + len) {
+            return null;
+        }
+        if (isStun(data, offset, len)) {
+            int pos = 20 + offset;
+            while (pos + 4 <= len) {
+                // Get the attribute type.
+                int attrType = get2Bytes(data, pos);
+                // Get the attribute length.
+                int attrLength = get2Bytes(data, pos + 2);
+                // Ensure the attribute length is not greater than the remaining size.
+                if ((pos + 4 + attrLength) > len) {
+                    log.error("the attribute length exceeds the remaining size, packet discarded");
+                    return null;
+                }
+                int attrValuePos = pos + 4;
+                if (attrType == Attribute.USERNAME.value) {
+                    byte[] userNameByte = new byte[attrLength];
+                    System.arraycopy(data, attrValuePos, userNameByte, 0, attrLength);
+                    return new String(userNameByte);
+                }
+                pos = padTo4Bytes(pos + 4 + attrLength);
+            }
+        }
+        return null;
+    }
+
+    public static boolean isStun(byte[] data, int offset, int len) {
         return (
                 // STUN headers are 20 bytes.
                 (len >= 20) &&
                         // DOC: https://tools.ietf.org/html/draft-ietf-avtcore-rfc5764-mux-fixes
-                        (data[0] < 3) &&
+                        (data[0 + offset] < 3) &&
                         // Magic cookie must match.
-                        (data[4] == MagicCookie[0]) && (data[5] == MagicCookie[1]) &&
-                        (data[6] == MagicCookie[2]) && (data[7] == MagicCookie[3])
+                        (data[4 + offset] == MagicCookie[0]) && (data[5 + offset] == MagicCookie[1]) &&
+                        (data[6 + offset] == MagicCookie[2]) && (data[7 + offset] == MagicCookie[3])
         );
     }
 
@@ -124,7 +152,7 @@ public class StunPacket {
     }
 
     private static int get4Bytes(byte[] data, int i) {
-        return ((0xFF & data[i]) << 24) + ((0xFF & data[i+1]) << 16) + ((0xFF & data[i+2]) << 8) + (0xFF & data[i + 3]);
+        return ((0xFF & data[i]) << 24) + ((0xFF & data[i + 1]) << 16) + ((0xFF & data[i + 2]) << 8) + (0xFF & data[i + 3]);
     }
 
     private static int padTo4Bytes(int size) {
